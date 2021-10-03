@@ -7,7 +7,7 @@ import CalcButton from "./components/CalcButton";
 //Within App.js, import the useReducer hook, our application's reducer and initialState object
 import { useReducer } from "react";
 import reducer, { initialState } from "./reducers/index";
-import dispatch from "./actions/index";
+import { applyNumber } from "./actions/index";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -32,7 +32,7 @@ function App() {
                 <b>Operation:</b> {state.operation}
               </span>
               <span id="memory">
-                {/* Replace "0" with a reference to `state.memory` within the memory element. */}
+                {/* Replace "0" with a reference  to `state.memory` within the memory element. */}
                 <b>Memory:</b> {state.memory}
               </span>
             </div>
@@ -44,27 +44,48 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={1} />
-              <CalcButton value={2} />
-              <CalcButton value={3} />
+              {[1, 2, 3].map((each) => {
+                return (
+                  <CalcButton
+                    value={each}
+                    onClick={() => {
+                      dispatch(applyNumber(3));
+                    }}
+                  />
+                );
+              })}
             </div>
 
             <div className="row">
-              <CalcButton value={4} />
-              <CalcButton value={5} />
-              <CalcButton value={6} />
+              {[4, 5, 6].map((each) => {
+                return (
+                  <CalcButton
+                    value={each}
+                    onClick={() => {
+                      dispatch(applyNumber(3));
+                    }}
+                  />
+                );
+              })}
             </div>
 
             <div className="row">
-              <CalcButton value={7} />
-              <CalcButton value={8} />
-              <CalcButton value={9} />
+              {[7, 8, 9].map((each) => {
+                return (
+                  <CalcButton
+                    value={each}
+                    onClick={() => {
+                      dispatch(applyNumber(3));
+                    }}
+                  />
+                );
+              })}
             </div>
 
             <div className="row">
-              <CalcButton value={"+"} />
-              <CalcButton value={"*"} />
-              <CalcButton value={"-"} />
+              {["+", "*", "-"].map((each) => {
+                return <CalcButton value={each} onClick={() => {}} />;
+              })}
             </div>
 
             <div className="row ce_button">
