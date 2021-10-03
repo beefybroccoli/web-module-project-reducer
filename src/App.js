@@ -7,7 +7,7 @@ import CalcButton from "./components/CalcButton";
 //Within App.js, import the useReducer hook, our application's reducer and initialState object
 import { useReducer } from "react";
 import reducer, { initialState } from "./reducers/index";
-import { addOne, applyNumber } from "./actions/index";
+import dispatch from "./actions/index";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -24,13 +24,16 @@ function App() {
       <div className="container row mt-5">
         <div className="col-md-12 d-flex justify-content-center">
           <form name="Cal">
-            <TotalDisplay value={0} />
+            {/* Replace "0" with a reference to `state.total` when passing a value to our TotalDisplay component. */}
+            <TotalDisplay value={state.total} />
             <div className="row details">
               <span id="operation">
-                <b>Operation:</b> X
+                {/* Replace "X" with a reference to `state.operation` within the operation element. */}
+                <b>Operation:</b> {state.operation}
               </span>
               <span id="memory">
-                <b>Memory:</b> 0
+                {/* Replace "0" with a reference to `state.memory` within the memory element. */}
+                <b>Memory:</b> {state.memory}
               </span>
             </div>
 
