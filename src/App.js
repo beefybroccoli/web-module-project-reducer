@@ -7,7 +7,7 @@ import CalcButton from "./components/CalcButton";
 //Within App.js, import the useReducer hook, our application's reducer and initialState object
 import { useReducer } from "react";
 import reducer, { initialState } from "./reducers/index";
-import { applyNumber } from "./actions/index";
+import { applyNumber, changeOperation } from "./actions/index";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -49,7 +49,7 @@ function App() {
                   <CalcButton
                     value={each}
                     onClick={() => {
-                      dispatch(applyNumber(3));
+                      dispatch(applyNumber(each));
                     }}
                   />
                 );
@@ -62,7 +62,7 @@ function App() {
                   <CalcButton
                     value={each}
                     onClick={() => {
-                      dispatch(applyNumber(3));
+                      dispatch(applyNumber(each));
                     }}
                   />
                 );
@@ -75,7 +75,7 @@ function App() {
                   <CalcButton
                     value={each}
                     onClick={() => {
-                      dispatch(applyNumber(3));
+                      dispatch(applyNumber(each));
                     }}
                   />
                 );
@@ -84,7 +84,14 @@ function App() {
 
             <div className="row">
               {["+", "*", "-"].map((each) => {
-                return <CalcButton value={each} onClick={() => {}} />;
+                return (
+                  <CalcButton
+                    value={each}
+                    onClick={() => {
+                      dispatch(changeOperation(each));
+                    }}
+                  />
+                );
               })}
             </div>
 
