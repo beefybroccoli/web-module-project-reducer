@@ -7,7 +7,14 @@ import CalcButton from "./components/CalcButton";
 //Within App.js, import the useReducer hook, our application's reducer and initialState object
 import { useReducer } from "react";
 import reducer, { initialState } from "./reducers/index";
-import { applyNumber, changeOperation } from "./actions/index";
+import {
+  applyNumber,
+  changeOperation,
+  clearDisplay,
+  memoryApply,
+  memoryClear,
+  memoryStore,
+} from "./actions/index";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -38,9 +45,24 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={"M+"} />
-              <CalcButton value={"MR"} />
-              <CalcButton value={"MC"} />
+              <CalcButton
+                value={"M+"}
+                onClick={() => {
+                  dispatch(memoryStore(state.total));
+                }}
+              />
+              <CalcButton
+                value={"MR"}
+                onClick={() => {
+                  dispatch(memoryApply(state.memory));
+                }}
+              />
+              <CalcButton
+                value={"MC"}
+                onClick={() => {
+                  dispatch(memoryClear());
+                }}
+              />
             </div>
 
             <div className="row">
@@ -96,7 +118,12 @@ function App() {
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"} />
+              <CalcButton
+                value={"CE"}
+                onClick={() => {
+                  dispatch(clearDisplay());
+                }}
+              />
             </div>
           </form>
         </div>
